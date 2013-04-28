@@ -15,10 +15,10 @@ public:
     BOOST_SERIALIZATION_SPLIT_MEMBER()
     
     template<class Archive>
-    void load(Archive & ar, const unsigned int version);
+    void load(Archive & ar, const unsigned int version){}
     
     template<class Archive>
-    void save(Archive & ar, const unsigned int version) const;
+    void save(Archive & ar, const unsigned int version) const{}
     
 };
 
