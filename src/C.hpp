@@ -20,16 +20,16 @@ public:
     template<class Archive>
     void load(Archive & ar, const unsigned int version)
         {
-            boost::serialization::void_cast_register<C, A>((C*)NULL, (A*)NULL);
-            //ar >> BOOST_SERIALIZATION_BASE_OBJECT_NVP(A);
+            //boost::serialization::void_cast_register<C, A>((C*)NULL, (A*)NULL);
+            ar >> BOOST_SERIALIZATION_BASE_OBJECT_NVP(A);
             ar >> BOOST_SERIALIZATION_NVP(c);
         }
 
     template<class Archive>
     void save(Archive & ar, const unsigned int version) const
         {
-            boost::serialization::void_cast_register<C, A>((C*)NULL, (A*)NULL);
-            //ar << BOOST_SERIALIZATION_BASE_OBJECT_NVP(A);
+            //boost::serialization::void_cast_register<C, A>((C*)NULL, (A*)NULL);
+            ar << BOOST_SERIALIZATION_BASE_OBJECT_NVP(A);
             ar << BOOST_SERIALIZATION_NVP(c);
         }
 

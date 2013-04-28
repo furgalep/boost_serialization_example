@@ -12,15 +12,17 @@ public:
 
     virtual int get() = 0;
 
-    // BOOST_SERIALIZATION_SPLIT_MEMBER()
+    BOOST_SERIALIZATION_SPLIT_MEMBER()
     
-    // template<class Archive>
-    // void load(Archive & ar, const unsigned int version);
+    template<class Archive>
+    void load(Archive & ar, const unsigned int version);
     
-    // template<class Archive>
-    // void save(Archive & ar, const unsigned int version) const;
+    template<class Archive>
+    void save(Archive & ar, const unsigned int version) const;
     
 };
+
+BOOST_CLASS_EXPORT_KEY( A );
 
 
 #endif /* _A_H_ */

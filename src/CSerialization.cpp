@@ -1,4 +1,5 @@
-#include "C.hpp"
+#include "CSerialization.hpp"
+
 #include <boost/serialization/export.hpp>
 // Because Frames only store DescriptorBase pointers, this code is necessary
 // to register serializaiton of these types.
