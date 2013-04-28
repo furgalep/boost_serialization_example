@@ -21,7 +21,7 @@
 
 
 
-//BOOST_CLASS_EXPORT_IMPLEMENT( C );
+BOOST_CLASS_EXPORT_IMPLEMENT( C );
 // template void C::save(boost::archive::binary_oarchive & ar, const unsigned int version) const;
 // template void C::load(boost::archive::binary_iarchive & ar, const unsigned int version);
 

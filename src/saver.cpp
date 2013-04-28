@@ -10,14 +10,26 @@ int main(int argc, char ** argv)
 {
 
 	try {
-		boost::shared_ptr<C> c(new C);
-		c->c = 7;
-		boost::shared_ptr<A> a(c);
+	        //shared_ptr
+		boost::shared_ptr<C> pc(new C);
+		pc->c = 7;
+		boost::shared_ptr<A> a(pc);
+		//obj
+		C c;
+		c.c = 8;
+		//ref
+		C c2;
+		c2.c = 9;
+		A& ra = c2;
+		
 		std::ofstream ofs("C.ba");
 		::boost::archive::binary_oarchive oa(ofs);
-                oa.register_type(static_cast<C *>(NULL));
                 oa << a;
-	        std::cout<<"Value stored: "<<a->get()<<std::endl;
+	        oa << c;
+	        oa << ra;
+	        std::cout<<"Value stored ptr: "<<a->get()<<std::endl;
+	        std::cout<<"Value stored obj: "<<c.get()<<std::endl;
+	        std::cout<<"Value stored ref: "<<ra.get()<<std::endl;
 	}
 	catch(const std::exception & e)
 	{
@@ -28,15 +40,22 @@ int main(int argc, char ** argv)
 	try {
 	        std::ifstream ifs("C.ba");
 		::boost::archive::binary_iarchive ia(ifs);
-                ia.register_type(static_cast<C *>(NULL));
-		boost::shared_ptr<A> c;
+		boost::shared_ptr<A> pc;
+		ia & pc;
+		
+		C c;
 		ia & c;
+		
+		C c2;
+		A& ra = c2;
+		ia & ra;
+		
 		std::cout<<"Finished deserialize"<<std::endl;
-	        std::cout<<"pointer adr: "<<c.get()<<std::endl;
-	        std::cout<<"Value loaded: "<<c->get()<<std::endl;
-	        /*A* aa;
-	        ia & aa;
-	        std::cout<<"Value loaded: "<<aa->get()<<std::endl;*/
+	        std::cout<<"pointer adr: "<<pc.get()<<std::endl;
+	        
+	        std::cout<<"Value loaded ptr: "<<pc->get()<<std::endl;
+	        std::cout<<"Value loaded obj: "<<c.get()<<std::endl;
+	        std::cout<<"Value loaded ref: "<<ra.get()<<std::endl;
 	        
 	}
 	catch(const std::exception & e)

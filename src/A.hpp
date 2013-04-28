@@ -23,6 +23,6 @@ public:
     
 };
 
-BOOST_SERIALIZATION_SHARED_PTR(A)
+//BOOST_SERIALIZATION_SHARED_PTR(A) //this seems not to be necessary in the base class
 
 #endif /* _A_H_ */
