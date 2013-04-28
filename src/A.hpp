@@ -2,7 +2,7 @@
 #define _A_H_
 
 #include <boost/serialization/split_member.hpp>
-#include <boost/serialization/export.hpp>
+
 
 class A
 {
@@ -12,13 +12,13 @@ public:
 
     virtual int get() = 0;
 
-    // BOOST_SERIALIZATION_SPLIT_MEMBER()
+    BOOST_SERIALIZATION_SPLIT_MEMBER()
     
-    // template<class Archive>
-    // void load(Archive & ar, const unsigned int version);
+    template<class Archive>
+    void load(Archive & ar, const unsigned int version);
     
-    // template<class Archive>
-    // void save(Archive & ar, const unsigned int version) const;
+    template<class Archive>
+    void save(Archive & ar, const unsigned int version) const;
     
 };
 

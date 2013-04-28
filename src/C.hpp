@@ -4,6 +4,7 @@
 #include "A.hpp"
 #include <boost/serialization/split_member.hpp>
 #include <boost/serialization/nvp.hpp>
+#include <boost/serialization/export.hpp>
 
 class C : public A
 {
@@ -16,26 +17,16 @@ public:
     virtual int get(){ return c;}
     BOOST_SERIALIZATION_SPLIT_MEMBER()
 
-
     template<class Archive>
-    void load(Archive & ar, const unsigned int version)
-        {
-            boost::serialization::void_cast_register<C, A>((C*)NULL, (A*)NULL);
-            //ar >> BOOST_SERIALIZATION_BASE_OBJECT_NVP(A);
-            ar >> BOOST_SERIALIZATION_NVP(c);
-        }
-
+    void load(Archive & ar, const unsigned int version);
+    
     template<class Archive>
-    void save(Archive & ar, const unsigned int version) const
-        {
-            boost::serialization::void_cast_register<C, A>((C*)NULL, (A*)NULL);
-            //ar << BOOST_SERIALIZATION_BASE_OBJECT_NVP(A);
-            ar << BOOST_SERIALIZATION_NVP(c);
-        }
+    void save(Archive & ar, const unsigned int version) const;
 
     
     
 };
+BOOST_CLASS_EXPORT_KEY( C );
 
 
 #endif /* _C_H_ */

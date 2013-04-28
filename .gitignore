@@ -1,4 +1,9 @@
+bin
+lib
+build
 *~
+cmake_install.cmake
+C.ba
 # Compiled Object files
 *.slo
 *.lo

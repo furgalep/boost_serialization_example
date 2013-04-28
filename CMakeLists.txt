@@ -32,18 +32,12 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 rosbuild_add_library(${PROJECT_NAME}
   src/A.cpp
   src/C.cpp
-  src/CSerialization.cpp
 )
 rosbuild_link_boost(${PROJECT_NAME} serialization)
 
 rosbuild_add_executable(saver src/saver.cpp)
 rosbuild_link_boost(saver serialization)
 target_link_libraries(saver ${PROJECT_NAME})
-
-rosbuild_add_executable(loader src/loader.cpp)
-rosbuild_link_boost(loader serialization)
-target_link_libraries(loader ${PROJECT_NAME})
-
 #rosbuild_add_executable(loader src/loader.cpp)
 
 
