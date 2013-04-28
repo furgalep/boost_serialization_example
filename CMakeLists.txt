@@ -38,7 +38,9 @@ rosbuild_link_boost(${PROJECT_NAME} serialization)
 rosbuild_add_executable(saver src/saver.cpp)
 rosbuild_link_boost(saver serialization)
 target_link_libraries(saver ${PROJECT_NAME})
-#rosbuild_add_executable(loader src/loader.cpp)
+rosbuild_add_executable(loader src/loader.cpp)
+rosbuild_link_boost(loader serialization)
+target_link_libraries(loader ${PROJECT_NAME})
 
 
 

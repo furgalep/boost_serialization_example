@@ -4,8 +4,8 @@
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/serialization/shared_ptr.hpp>
 #include <boost/shared_ptr.hpp>
-//#include "C.hpp"
-#include "CSerialization.hpp"
+#include "C.hpp"
+//#include "CSerialization.hpp"
 
 int main(int argc, char ** argv)
 {
@@ -17,7 +17,9 @@ int main(int argc, char ** argv)
             std::cout << "1\n";
             std::ifstream ifs("C.ba");
             ::boost::archive::binary_iarchive ia(ifs);
-            ia >> a1;
+            C* c;
+            ia >> c;
+            a1.reset(c);
         }
 
         std::cout << "a1: " << (void*) a1.get() << std::endl;
