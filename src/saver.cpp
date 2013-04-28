@@ -18,9 +18,9 @@ int main(int argc, char ** argv)
 		boost::shared_ptr<A> a(c);
 		std::ofstream ofs("C.ba");
 		::boost::archive::binary_oarchive oa(ofs);
-		A* aa = a.get();
-		oa << aa;
-	        std::cout<<"Value stored: "<<aa->get()<<std::endl;
+		
+		oa << a;
+        std::cout<<"Value stored: "<<a->get()<<std::endl;
 	}
 	catch(const std::exception & e)
 	{
@@ -29,11 +29,11 @@ int main(int argc, char ** argv)
 	}
 	
 	try {
-	        std::ifstream ifs("C.ba");
+        std::ifstream ifs("C.ba");
 		::boost::archive::binary_iarchive ia(ifs);
-	        A* aa;
-	        ia & aa;
-	        std::cout<<"Value loaded: "<<aa->get()<<std::endl;
+        boost::shared_ptr< A > aa;
+        ia >> aa;
+        std::cout<<"Value loaded: "<< aa->get() << std::endl;
 	}
 	catch(const std::exception & e)
 	{
