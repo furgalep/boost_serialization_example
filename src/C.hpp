@@ -5,6 +5,7 @@
 #include <boost/serialization/split_member.hpp>
 #include <boost/serialization/nvp.hpp>
 #include <boost/serialization/export.hpp>
+#include <boost/serialization/shared_ptr.hpp> 
 
 class C : public A
 {
@@ -14,7 +15,7 @@ public:
 
     int c;
 
-    virtual int get(){ return c;}
+    virtual int get() const { return c;}
     BOOST_SERIALIZATION_SPLIT_MEMBER()
 
     template<class Archive>
@@ -32,7 +33,8 @@ public:
     
     
 };
-BOOST_CLASS_EXPORT_KEY( C );
+//BOOST_CLASS_EXPORT_KEY( C );
+BOOST_SERIALIZATION_SHARED_PTR(C)
 
 
 #endif /* _C_H_ */

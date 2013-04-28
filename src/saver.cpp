@@ -4,10 +4,7 @@
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/serialization/shared_ptr.hpp>
 #include <boost/shared_ptr.hpp>
-//#include "CSerialization.hpp"
 
-//BOOST_CLASS_EXPORT_KEY( A );
-//BOOST_SERIALIZATION_ASSUME_ABSTRACT(A);
 
 int main(int argc, char ** argv)
 {
@@ -18,9 +15,9 @@ int main(int argc, char ** argv)
 		boost::shared_ptr<A> a(c);
 		std::ofstream ofs("C.ba");
 		::boost::archive::binary_oarchive oa(ofs);
-		A* aa = a.get();
-		oa << aa;
-	        std::cout<<"Value stored: "<<aa->get()<<std::endl;
+                oa.register_type(static_cast<C *>(NULL));
+                oa << a;
+	        std::cout<<"Value stored: "<<a->get()<<std::endl;
 	}
 	catch(const std::exception & e)
 	{
@@ -31,9 +28,16 @@ int main(int argc, char ** argv)
 	try {
 	        std::ifstream ifs("C.ba");
 		::boost::archive::binary_iarchive ia(ifs);
-	        A* aa;
+                ia.register_type(static_cast<C *>(NULL));
+		boost::shared_ptr<A> c;
+		ia & c;
+		std::cout<<"Finished deserialize"<<std::endl;
+	        std::cout<<"pointer adr: "<<c.get()<<std::endl;
+	        std::cout<<"Value loaded: "<<c->get()<<std::endl;
+	        /*A* aa;
 	        ia & aa;
-	        std::cout<<"Value loaded: "<<aa->get()<<std::endl;
+	        std::cout<<"Value loaded: "<<aa->get()<<std::endl;*/
+	        
 	}
 	catch(const std::exception & e)
 	{

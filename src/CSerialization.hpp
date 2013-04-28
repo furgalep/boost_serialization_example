@@ -12,6 +12,6 @@ void exportC()
 }
 
 
-BOOST_CLASS_EXPORT_KEY( C );
+//BOOST_CLASS_EXPORT_KEY( C );
 
 #endif

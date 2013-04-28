@@ -7,6 +7,7 @@
 #include "C.hpp"
 //#include "CSerialization.hpp"
 
+
 int main(int argc, char ** argv)
 {
 
@@ -17,17 +18,15 @@ int main(int argc, char ** argv)
             std::cout << "1\n";
             std::ifstream ifs("C.ba");
             ::boost::archive::binary_iarchive ia(ifs);
-            C* c;
+            /*C* c;
             ia >> c;
-            a1.reset(c);
+            a1.reset(c);*/
+            ia & a1;
         }
 
-        std::cout << "a1: " << (void*) a1.get() << std::endl;
+        std::cout << "a1: " << a1.get() << std::endl;
 
-        //C * c1 = dynamic_cast<C*>(a1.get());
-        //std::cout << "c1: " << (void*) c1 << std::endl;
-
-        std::cout << "loaded: " << a1->get() << std::endl;
+        //std::cout << "loaded: " << a1->get() << std::endl;
 	}
 	catch(const std::exception & e)
 	{
