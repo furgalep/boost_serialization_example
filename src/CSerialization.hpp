@@ -6,11 +6,6 @@
 
 #include "C.hpp"
 
-void exportC()
-{
-    boost::serialization::void_cast_register<C, A>((C*)NULL, (A*)NULL);
-}
-
 
 BOOST_CLASS_EXPORT_KEY( C );
 

@@ -16,7 +16,6 @@ int main(int argc, char ** argv)
         //boost::serialization::void_cast_register<C, A>((C*)NULL, (A*)NULL);
         //boost::archive::detail::extra_detail::guid_initializer<C> init;
         //init.export_guid();
-        exportC();
 		boost::shared_ptr<C> c1(new C);
 		c1->c = rand();
 		boost::shared_ptr<A> a1(c1);
