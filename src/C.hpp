@@ -20,12 +20,14 @@ public:
 
     template<class Archive>
     void load(Archive & ar, const unsigned int version){
+    std::cout<<"loading C"<<std::endl;
         ar >> BOOST_SERIALIZATION_BASE_OBJECT_NVP(A);
         ar >> BOOST_SERIALIZATION_NVP(c);
     }
     
     template<class Archive>
     void save(Archive & ar, const unsigned int version) const{
+    std::cout<<"saving C"<<std::endl;
             ar << BOOST_SERIALIZATION_BASE_OBJECT_NVP(A);
             ar << BOOST_SERIALIZATION_NVP(c);
     }
