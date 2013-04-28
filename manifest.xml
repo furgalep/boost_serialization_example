@@ -1,0 +1,14 @@
+<package>
+  <description brief="serialization_example">
+
+     serialization_example
+
+  </description>
+  <author>Paul Furgale</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/serialization_example</url>
+
+</package>
+
+
