@@ -9,6 +9,11 @@
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/serialization_example</url>
 
+  <export>
+    <python path="${prefix}/python"/>
+  </export>
+
+
 </package>
 
 

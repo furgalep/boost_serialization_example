@@ -15,3 +15,10 @@ BOOST_CLASS_EXPORT_IMPLEMENT( C );
 
 template void C::save(boost::archive::binary_oarchive & ar, const unsigned int version) const;
 template void C::load(boost::archive::binary_iarchive & ar, const unsigned int version);
+
+int doLink()
+{
+    static int i = 0;
+    return i;
+}
+

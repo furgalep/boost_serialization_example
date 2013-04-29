@@ -32,17 +32,36 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 rosbuild_add_library(${PROJECT_NAME}
   src/A.cpp
   src/C.cpp
-  src/CSerialization.cpp
 )
 rosbuild_link_boost(${PROJECT_NAME} serialization)
 
+rosbuild_add_library(${PROJECT_NAME}_serialization
+  src/CSerialization.cpp
+)
+target_link_libraries(${PROJECT_NAME}_serialization ${PROJECT_NAME})
+
+rosbuild_add_library(${PROJECT_NAME}_serializer
+  src/Serializer.cpp
+)
+target_link_libraries(${PROJECT_NAME}_serializer ${PROJECT_NAME}_serialization)
+
+
+
 rosbuild_add_executable(saver src/saver.cpp)
 rosbuild_link_boost(saver serialization)
-target_link_libraries(saver ${PROJECT_NAME})
+target_link_libraries(saver ${PROJECT_NAME}_serializer)
 
 rosbuild_add_executable(loader src/loader.cpp)
 rosbuild_link_boost(loader serialization)
-target_link_libraries(loader ${PROJECT_NAME})
+target_link_libraries(loader ${PROJECT_NAME}_serializer)
+
+
+include(add_python_export_library.cmake)
+# This functions takes TARGET_NAME PYTHON_MODULE_DIRECTORY sourceFile1 [sourceFile2 ...]
+add_python_export_library(${PROJECT_NAME}_python python/boost_serialization_example
+  src/module.cpp
+)
+target_link_libraries(${PROJECT_NAME}_python ${PROJECT_NAME}_serializer)
 
 #rosbuild_add_executable(loader src/loader.cpp)
 

@@ -6,6 +6,7 @@
 
 #include "C.hpp"
 
+int doLink();
 
 BOOST_CLASS_EXPORT_KEY( C );
 
